@@ -1,0 +1,49 @@
+.cubeContainer {
+  position: relative;
+  width: calc(20% - 40px);
+  height: 94.4px;
+  margin: 20px;
+  perspective: 1000px; }
+
+.cube {
+  width: 100%;
+  height: 94.4px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform .4s; }
+
+.cube.show {
+  transform: rotateY(-180deg); }
+
+.side {
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  height: 94.4px;
+  border: 1px solid aqua;
+  background: pink; }
+
+.front {
+  transform: translateZ(47.2px); }
+
+.right {
+  transform: rotateY(90deg) translateZ(47.2px); }
+
+.back {
+  transform: rotateY(180deg) translateZ(47.2px); }
+  .back span {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 2rem;
+    width: 94px;
+    height: 94px; }
+
+.left {
+  transform: rotateY(-90deg) translateZ(47.2px); }
+
+.top {
+  transform: rotateX(90deg) translateZ(47.2px); }
+
+.bottom {
+  transform: rotateX(-90deg) translateZ(47.2px); }
