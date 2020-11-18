@@ -1,148 +1,168 @@
-.startButton{
+html {
+	height: 100%;
+	background-image: radial-gradient(2200px, #B5FFFF,#3A3897); 
+}
+* {
+margin: 0;
+padding: 0;
+}
+button {
+	outline: none;
+	border: none;
+	cursor: pointer;
+}
+body {
+font-family: 'Inconsolata', monospace;
+line-height: 1.25;
+font-size: 1rem;    
+}
+.app {   
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%); 
+
+	width: 960px;
+	height: 625px;           
+	margin: 0 auto;
+}
+.start-button {
 	display: block;
-	position: absolute;
+
+	position: fixed;
 	top: calc(50% - 40px);
 	left: calc(50% - 160px);
-	text-transform: uppercase;
-	font-size: 2.5em;
-	color: #fff;
-	padding: 20px;
-	cursor: pointer;
-	background-image: radial-gradient(200% 200%, #29ABE2, #4F00BC);
-	border: none;
-	outline: none;
-	border-radius: 20px;
 	transform: scale(1);	
-	transition: transform .3s;
+
+	padding: 20px;
+
+	font-size: 2rem;
+	text-transform: uppercase;
+	color: #fff;
+
+	background-image: radial-gradient(200% 200%, #29ABE2, #4F00BC);
+	border-radius: 20px;
+
+	transition: transform .3s, color .3s;
 	animation: appearance 1s ease-out;	
 	&:hover{
 		transform: scale(1.1);
 		box-shadow: 0 0 20px 5px;
 		color: #06266F;		
 	}
+	&.hide {
+		transform: scale(0);	
+	}
+	&.start {
+		transform: scale(1);
+	}
 }
+.button-bar {
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
 
-.startButton.hide{	
-	transform: scale(0);	
+	width: 70%;
+	padding: 0 20px;
+	margin: 0 auto;
 }
-.startButton.start{	
-	
-	transform: scale(1);
-}
-
-.restartButton{
-	position: absolute;
-	left: 160px;
-	bottom: 150px;		
+.restart-button,
+.end-game-button {
 	display: block;
+
 	width: 270px;	
-	color: #fff;
-	font-size: 1.75em;
-	text-transform: uppercase;
 	padding: 20px;
-	cursor: pointer;
+
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	color: #fff;
+
 	background-image: radial-gradient(300% 150%, #29ABE2, #4F00BC);
-	border: none;
 	border-radius: 20px;
-	outline: none;
-	transition: transform .3s;
+
+	transition: transform .3s, color .3s;
+	&:hover {
+		box-shadow: 0 0 5px 2px;
+		transform: translateY(-3px);
+		color: #06266F;
+	}
+}
+.restart-button {
 	animation: restartButtonAppearance .7s ease-out;
-	&:hover{
-		box-shadow: 0 0 5px 2px;
-		transform: translateY(-3px);
-		color: #06266F;
-	}
 }
-.endGameButton{
-	position: absolute;
-	right: 160px;
-	bottom: 150px;	
-	display: block;
-	width: 270px;	
-	color: #fff;
-	font-size: 1.75em;
-	text-transform: uppercase;
-	padding: 20px;
-	cursor: pointer;
-	background-image: radial-gradient(300% 150%, #29ABE2, #4F00BC);
-	border: none;
-	border-radius: 20px;
-	outline: none;
-	transition: transform .3s;
+.end-game-button {
 	animation: endButtonAppearance .7s ease-out;
-	&:hover{
-		box-shadow: 0 0 5px 2px;
-		transform: translateY(-3px);
-		color: #06266F;
-	}
 }
-
-.compliments{
+.compliments {
 	position: absolute;
 	top: 100px;
-	left: calc(50% - 314px);
-	font-size: 6rem;
+	left: 50%;
 	z-index: 20;
+	transform: translateX(-50%);
+
+	font-size: 6rem;
+
 	animation: complimentsAppearence .4s;
 }
-
-.moves{
+.moves {
 	position: absolute;
 	top: 250px;
-	left: calc(50% - 220px);
-	font-size: 2.2rem;
+	left: 50%;
 	z-index: 30;
+	transform: translateX(-50%);
+
+	font-size: 2.2rem;
+	
 	animation: movesAppearence .4s;
 }
-
-.result{
+.score {
 	position: absolute;
-	top: 400px;
-	left: calc(50% - 72px);
+	top: 300px;
+	left: 50%;
+	z-index: 40;
+	transform: translateX(-50%);
+
 	font-size: 9rem;
 	color: #4F00BC;
-	z-index: 40;
+
 	animation: resultAppearence 2.8s;
 }
-
-.gameField{
+.stage {
 	display: flex;
 	flex-wrap: wrap;
+	
 	width: 70%;
 	margin: 0 auto;
-	margin-top: 50px;	
+	margin-bottom: 20px;	
 }
-
-.cubeContainer{
+.cube-container {
 	position: relative;
 	width: calc(20% - 40px);
 	height: 94.4px;
 	margin: 20px;
 	perspective: 1000px;
 }
-
-.cube{
-	width: 100%;
-	height: 94.4px;
+.cube {
 	transform-style: preserve-3d;
-	cursor: pointer;
 	transform: rotateY(0);	
 	transition: transform .4s, box-shadow .3s;
+
+	width: 100%;
+	height: 94.4px;
+
+	cursor: pointer;
 	animation: cubeAppearance .7s;
 	&:hover{
 		box-shadow: 0 0 16px 1px #06266F;
-	}			
+	}	
+	&.show {
+		transform: rotateY(-180deg);
+	}		
+	&.hide {
+		transform: scale(0);
+	}
 }
-
-.cube.show{
-	transform: rotateY(-180deg);	
-}
-
-.cube.hide{	
-	transform: scale(0);
-}
-
-.side{
+.side {
 	box-sizing: border-box;
 	position: absolute;
 	width: 100%;
@@ -151,18 +171,15 @@
 	background-image: linear-gradient(15deg, #4F00BC, #29ABE2);
 	color: #fff;
 }
-
-.front{
+.front {
 	transform: translateZ(47.2px);
 }
-
-.right{
+.right {
 	transform: rotateY(90deg) translateZ(47.2px);
 }
-
-.back{
+.back {
 	transform: rotateY(180deg) translateZ(47.2px);
-	span{
+	span {
 		display: table-cell;
 		vertical-align: middle;
 		text-align: center;
@@ -171,20 +188,15 @@
 		height: 94px;
 	}
 }
-
-.left{
+.left {
 	transform: rotateY(-90deg) translateZ(47.2px);
 }
-
-.top{
+.top {
 	transform: rotateX(90deg) translateZ(47.2px);
 }
-
-.bottom{
+.bottom {
 	transform: rotateX(-90deg) translateZ(47.2px);
 }
-
-
 
 @keyframes vibration{
 	
@@ -258,21 +270,21 @@
 }
 
 @keyframes complimentsDisappearence{
-	from {transform: scale(1); opacity: 1;}
-	to {transform: scale(0); opacity: 0;}
+	from {transform: translateX(-50%) scale(1); opacity: 1;}
+	to {transform: translateX(-50%) scale(0); opacity: 0;}
 }
 
 @keyframes complimentsAppearence{
-	from {transform: translateY(-200px); opacity: 0;}
-	to {transform: translateY(0); opacity: 1;}
+	from {transform: translate(-50%, -200px); opacity: 0;}
+	to {transform: translate(-50%, 0); opacity: 1;}
 }
 
 @keyframes movesAppearence{
-	from {transform: translateY(-500px);  opacity: 0;}
-	to {transform: translateY(0);  opacity: 1;}
+	from {transform: translate(-50%, -500px);  opacity: 0;}
+	to {transform: translate(-50%, 0);  opacity: 1;}
 }
 
 @keyframes resultAppearence{
-	from {  opacity: 0;}
+	from { opacity: 0;}
 	to { opacity: 1;}
 }
