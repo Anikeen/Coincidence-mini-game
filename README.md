@@ -1,3 +1,3 @@
-# Moincidence mini-game
+# Coincidence mini-game
 
 A simple mini-game to demonstrate my JavaScript skill.
